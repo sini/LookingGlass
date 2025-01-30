@@ -19,7 +19,6 @@
  */
 
 #include "kb.h"
-#include "cimgui.h"
 
 const uint32_t linux_to_ps2[KEY_MAX] =
 {

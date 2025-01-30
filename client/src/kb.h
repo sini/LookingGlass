@@ -24,6 +24,8 @@
 #include <linux/input.h>
 #include <stdint.h>
 
+#include "cimgui.h"
+
 #define PS2_MUTE        0xE020
 #define PS2_VOLUME_UP   0xE030
 #define PS2_VOLUME_DOWN 0xE02E
