@@ -1590,6 +1590,19 @@ static VkSurfaceKHR x11CreateVulkanSurface(VkInstance instance)
 
   return surface;
 }
+
+static bool x11VulkanPresent(VkQueue queue,
+    struct VkPresentInfoKHR * presentInfo)
+{
+  VkResult result = vkQueuePresentKHR(queue, presentInfo);
+  if (result != VK_SUCCESS)
+  {
+    DEBUG_ERROR("Failed to present swapchain image (VkResult: %d)", result);
+    return false;
+  }
+
+  return true;
+}
 #endif
 
 static bool x11WaitFrame(void)
@@ -2041,6 +2054,7 @@ struct LG_DisplayServerOps LGDS_X11 =
 #ifdef ENABLE_VULKAN
   .getVulkanSurfaceExtension = x11GetVulkanSurfaceExtension,
   .createVulkanSurface = x11CreateVulkanSurface,
+  .vulkanPresent       = x11VulkanPresent,
 #endif
   .waitFrame           = x11WaitFrame,
   .stopWaitFrame       = x11StopWaitFrame,
