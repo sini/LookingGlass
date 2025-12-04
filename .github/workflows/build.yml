@@ -160,7 +160,11 @@ jobs:
       run: |
         cd host\build
         makensis -DBUILD_32BIT platform\Windows\installer.nsi
-
+    - name: Archive build restuls
+      uses: actions/upload-artifact@v4
+      with:
+        name: looking-glass-host-setup
+        path: D:\a\LookingGlass\LookingGlass\host\build\platform\Windows\looking-glass-host-setup.exe
   idd:
     runs-on: windows-2022
     steps:
